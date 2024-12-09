@@ -31,7 +31,7 @@ cloudinary.config({
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Frontend URL
+    origin: 'https://findadoctor.vercel.app', // Frontend URL
     credentials: true, // Allow cookies to be sent
 }));
 
