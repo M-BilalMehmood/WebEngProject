@@ -11,35 +11,31 @@ import patientRoutes from './src/routes/patient.js';
 import staffRoutes from './src/routes/staff.js';
 import authRoutes from './src/routes/auth.js';
 import errorHandler from './src/middleware/errorHandler.js';
-import bodyParser from 'body-parser';
 
 dotenv.config();
 
 const app = express();
-const cors = require('cors');
 
 // Connect to database
-connectDB().then(() => console.log('^_^'));
+connectDB().then(() => console.log('Database connected!'));
 
 // Configure Cloudinary
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // Middleware
-app.use(bodyParser.json());
-
-
 app.use(
   cors({
-    origin: 'https://findadoctor.vercel.app', // Frontend URL
-    methods: '*',
+    origin: 'https://findadoctor.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-
+app.options('*', cors()); // Handle preflight requests
 
 app.use(cookieParser());
 app.use(express.json());
