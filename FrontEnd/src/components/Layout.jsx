@@ -28,6 +28,9 @@ const Layout = ({ children }) => {
                 case 'staff':
                     navigate('/staff/dashboard');
                     break;
+                case 'superAdmin':
+                    navigate('/super-admin/dashboard');
+                    break;
                 default:
                     navigate('/');
             }
@@ -76,7 +79,9 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
             </nav>
-            <main>{children}</main>
+            <main className="flex-1 overflow-auto bg-gray-50">
+                {children}
+            </main>
         </div>
     );
 };
