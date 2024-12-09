@@ -16,6 +16,7 @@ import bodyParser from 'body-parser';
 dotenv.config();
 
 const app = express();
+const cors = require('cors');
 
 // Connect to database
 connectDB().then(() => console.log('^_^'));
@@ -30,10 +31,15 @@ cloudinary.config({
 // Middleware
 app.use(bodyParser.json());
 
-app.use(cors({
+
+app.use(
+  cors({
     origin: 'https://findadoctor.vercel.app', // Frontend URL
-    credentials: true, // Allow cookies to be sent
-}));
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
+
 
 app.use(cookieParser());
 app.use(express.json());
