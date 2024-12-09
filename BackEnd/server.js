@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: '*', // Frontend URL
+    origin: 'https://findadoctor.vercel.app', // Frontend URL
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
